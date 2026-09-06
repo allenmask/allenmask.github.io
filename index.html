@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Allen Mask</title>
+  <meta name="description" content="Allen Mask — Current Investor, former Operator. Entrepreneur. Consultant. Coach." />
+  <meta property="og:title" content="Allen Mask" />
+  <meta property="og:description" content="Current Investor, former Operator. Entrepreneur. Consultant. Coach." />
+  <meta property="og:url" content="https://allenmask.com" />
+  <meta property="og:image" content="https://allenmask.com/assets/headshot.jpg?v=3" />
+  <meta name="twitter:card" content="summary" />
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg: #0c0d10;
+      --bg-ambient: radial-gradient(circle at 50% 0%, #1c202a 0%, #0c0d10 70%);
+      --card-bg: rgba(255, 255, 255, 0.05);
+      --card-border: rgba(255, 255, 255, 0.09);
+      --card-hover: rgba(255, 255, 255, 0.09);
+      --card-active: rgba(255, 255, 255, 0.13);
+      --text: #ffffff;
+      --text-muted: #9499a6;
+      --text-dim: #646a79;
+      --accent: #3b82f6;
+      --accent-glow: rgba(59, 130, 246, 0.25);
+      --badge-bg: rgba(255, 255, 255, 0.07);
+      --badge-border: rgba(255, 255, 255, 0.12);
+      --badge-text: #e2e8f0;
+      --icon-bg: rgba(255, 255, 255, 0.07);
+      --icon-hover: rgba(255, 255, 255, 0.15);
+      --shadow-card: 0 8px 30px rgba(0, 0, 0, 0.35);
+      --radius: 20px;
+      --radius-sm: 14px;
+      --radius-pill: 9999px;
+      --spotlight-bg: #ffffff;
+      --spotlight-border: #ffffff;
+      --spotlight-text: #090a0f;
+      --spotlight-sub: #475569;
+      --spotlight-icon-bg: rgba(0, 0, 0, 0.06);
+      --spotlight-icon-border: rgba(0, 0, 0, 0.1);
+      --spotlight-arrow: #090a0f;
+      --spotlight-shadow: 0 14px 34px rgba(255, 255, 255, 0.14), 0 4px 14px rgba(0, 0, 0, 0.5);
+      --spotlight-hover-shadow: 0 20px 44px rgba(255, 255, 255, 0.24), 0 6px 18px rgba(0, 0, 0, 0.6);
+      --spotlight-tag-bg: #090a0f;
+      --spotlight-tag-text: #ffffff;
+    }
+
+    [data-theme="light"] {
+      --bg: #f4f4f6;
+      --bg-ambient: radial-gradient(circle at 50% 0%, #e8eaf0 0%, #f4f4f6 70%);
+      --card-bg: #ffffff;
+      --card-border: rgba(0, 0, 0, 0.08);
+      --card-hover: #fafafa;
+      --card-active: #f2f2f5;
+      --text: #0f172a;
+      --text-muted: #64748b;
+      --text-dim: #94a3b8;
+      --accent: #2563eb;
+      --accent-glow: rgba(37, 99, 235, 0.15);
+      --badge-bg: rgba(0, 0, 0, 0.05);
+      --badge-border: rgba(0, 0, 0, 0.08);
+      --badge-text: #334155;
+      --icon-bg: #f8fafc;
+      --icon-hover: #f1f5f9;
+      --shadow-card: 0 6px 24px rgba(0, 0, 0, 0.06);
+      --spotlight-bg: #0c0d12;
+      --spotlight-border: #0c0d12;
+      --spotlight-text: #ffffff;
+      --spotlight-sub: #94a3b8;
+      --spotlight-icon-bg: rgba(255, 255, 255, 0.12);
+      --spotlight-icon-border: rgba(255, 255, 255, 0.18);
+      --spotlight-arrow: #ffffff;
+      --spotlight-shadow: 0 14px 34px rgba(12, 13, 18, 0.22), 0 4px 12px rgba(0, 0, 0, 0.08);
+      --spotlight-hover-shadow: 0 20px 44px rgba(12, 13, 18, 0.32), 0 6px 16px rgba(0, 0, 0, 0.12);
+      --spotlight-tag-bg: #ffffff;
+      --spotlight-tag-text: #0c0d12;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      background-image: var(--bg-ambient);
+      background-attachment: fixed;
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 36px 18px 64px;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+
+    .bio-wrapper {
+      width: 100%;
+      max-width: 480px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    /* Top Floating Utility Bar */
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+    }
+
+    .top-actions {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: var(--badge-bg);
+      border: 1px solid var(--badge-border);
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      transition: all 0.2s ease;
+    }
+
+    .btn-icon:hover {
+      background: var(--icon-hover);
+      transform: scale(1.05);
+    }
+
+    /* Main Bio Profile Header */
+    .profile-hero {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 8px 12px 0;
+    }
+
+    .avatar-container {
+      position: relative;
+      width: 114px;
+      height: 114px;
+      margin-bottom: 20px;
+    }
+
+    .avatar-img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: center top;
+      border: 2px solid var(--card-border);
+      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.35);
+    }
+
+    .name-title-row {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 8px;
+    }
+
+    .name-title-row h1 {
+      font-size: 1.75rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      color: var(--text);
+    }
+
+    .verified-check {
+      color: #38bdf8;
+      display: inline-flex;
+    }
+
+    .role-headline {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text);
+      letter-spacing: -0.01em;
+      margin-bottom: 12px;
+    }
+
+    .bio-tagline {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 5px;
+      margin-top: 2px;
+      text-align: center;
+    }
+
+    .tagline-primary {
+      font-size: 0.98rem;
+      font-weight: 600;
+      color: var(--text);
+      letter-spacing: -0.01em;
+    }
+
+    .tagline-secondary {
+      font-size: 0.88rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      letter-spacing: 0.02em;
+    }
+
+    @media (max-width: 380px) {
+      .tagline-primary { font-size: 0.9rem; }
+      .tagline-secondary { font-size: 0.82rem; }
+    }
+
+    .bio-summary strong {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    /* Primary Links Stack */
+    .links-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      width: 100%;
+    }
+
+    .link-card {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 20px;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      box-shadow: var(--shadow-card);
+      text-decoration: none;
+      color: inherit;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .link-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(90deg, rgba(255, 255, 255, 0.04), transparent);
+      opacity: 0;
+      transition: opacity 0.25s ease;
+    }
+
+    .link-card:hover {
+      background: var(--card-hover);
+      border-color: var(--card-active);
+      transform: translateY(-2px);
+    }
+
+    .link-card:hover::before {
+      opacity: 1;
+    }
+
+    .link-card:active {
+      transform: scale(0.99);
+    }
+
+    .link-left {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .link-icon-box {
+      width: 46px;
+      height: 46px;
+      border-radius: var(--radius-sm);
+      background: var(--icon-bg);
+      border: 1px solid var(--card-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      color: var(--text);
+      transition: all 0.2s ease;
+    }
+
+    .link-card:hover .link-icon-box {
+      border-color: var(--text-dim);
+      background: var(--icon-hover);
+    }
+
+    .link-info {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .link-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: -0.01em;
+    }
+
+    .link-sub {
+      font-size: 0.83rem;
+      font-weight: 500;
+      color: var(--text-muted);
+    }
+
+    .link-arrow {
+      color: var(--text-dim);
+      transition: all 0.2s ease;
+      display: flex;
+    }
+
+    .link-card:hover .link-arrow {
+      color: var(--text);
+      transform: translateX(3px) translateY(-3px);
+    }
+
+    /* Toast Notification */
+    #toast {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%) translateY(100px);
+      background: var(--text);
+      color: var(--bg);
+      padding: 12px 24px;
+      border-radius: var(--radius-pill);
+      font-size: 0.86rem;
+      font-weight: 600;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      z-index: 999;
+      pointer-events: none;
+    }
+
+    #toast.active {
+      transform: translateX(-50%) translateY(0);
+    }
+
+    
+
+    /* Footer */
+    .bio-footer {
+      text-align: center;
+      padding: 14px 0 0;
+    }
+
+    .bio-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--text-dim);
+      text-decoration: none;
+      letter-spacing: 0.02em;
+    }
+
+    .bio-badge:hover {
+      color: var(--text);
+    }
+
+    /* Spotlight / Contrast Card (Latest Project) */
+    .spotlight-card {
+      background: var(--spotlight-bg) !important;
+      border: 1px solid var(--spotlight-border) !important;
+      color: var(--spotlight-text) !important;
+      box-shadow: var(--spotlight-shadow) !important;
+    }
+
+    .spotlight-card .link-title {
+      color: var(--spotlight-text) !important;
+    }
+
+    .spotlight-card .link-sub {
+      color: var(--spotlight-sub) !important;
+      font-weight: 600;
+    }
+
+    .spotlight-card .link-icon-box {
+      background: var(--spotlight-icon-bg) !important;
+      border-color: var(--spotlight-icon-border) !important;
+      color: var(--spotlight-text) !important;
+    }
+
+    .spotlight-card .link-arrow {
+      color: var(--spotlight-arrow) !important;
+    }
+
+    .spotlight-card:hover {
+      transform: translateY(-3px) scale(1.01) !important;
+      box-shadow: var(--spotlight-hover-shadow) !important;
+    }
+
+    .spotlight-badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 2px 7px;
+      border-radius: var(--radius-pill);
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      background: var(--spotlight-tag-bg);
+      color: var(--spotlight-tag-text);
+      margin-left: 8px;
+    }
+
+    
+    
+
+    /* Minimal Contact Icon Button */
+    .contact-bar {
+      display: flex;
+      justify-content: center;
+      margin-top: 6px;
+    }
+
+    .contact-icon-btn {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--badge-bg);
+      border: 1px solid var(--badge-border);
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      text-decoration: none;
+    }
+
+    .contact-icon-btn:hover {
+      background: var(--card-hover);
+      color: var(--text);
+      border-color: var(--text-dim);
+      transform: scale(1.08) translateY(-2px);
+    }
+
+    /* Brand Avatar (High-contrast circular AM mark) */
+    .brand-avatar {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: #ffffff;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+      transition: transform 0.2s ease, border-color 0.2s ease;
+      flex-shrink: 0;
+    }
+
+    .brand-avatar:hover {
+      transform: scale(1.05);
+      border-color: var(--text-dim);
+    }
+
+    .brand-avatar-img {
+      width: 19px;
+      height: auto;
+      display: block;
+      filter: invert(1);
+    }
+
+    [data-theme="light"] .brand-avatar {
+      background: #000000 !important;
+      border-color: rgba(0, 0, 0, 0.2) !important;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    }
+
+    [data-theme="light"] .brand-avatar-img {
+      filter: invert(0) !important;
+    }
+
+    /* Miniature Book Cover (Zero halo / crisp black spine / perfectly aligned) */
+    .spotlight-card .link-icon-box.book-icon-box,
+    .book-icon-box {
+      width: 46px !important;
+      height: 46px !important;
+      background: transparent !important;
+      border: none !important;
+      box-shadow: none !important;
+      padding: 0 !important;
+      margin: 0 !important;
+      display: flex !important;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .book-cover-thumb {
+      width: 20px;
+      height: 30px;
+      border-radius: 0 2px 2px 0;
+      border-left: 2px solid #141416; /* Clean crisp book spine */
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.28);
+      object-fit: cover;
+      display: block;
+      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .link-card:hover .book-cover-thumb {
+      transform: scale(1.08) rotate(-1.5deg);
+      box-shadow: 0 5px 12px rgba(0, 0, 0, 0.36);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="bio-wrapper">
+
+    <!-- Top Actions Bar -->
+    <div class="top-bar">
+      <div class="brand-avatar" title="Allen Mask">
+        <img src="assets/logo-mark.png" alt="AM" class="brand-avatar-img" />
+      </div>
+      <div class="top-actions">
+        <button class="btn-icon" id="shareBtn" title="Share Profile" aria-label="Share">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line></svg>
+        </button>
+        <button class="btn-icon" id="themeToggle" title="Toggle Theme" aria-label="Theme">
+          <svg id="moonIcon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+          <svg id="sunIcon" style="display:none;" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Main Profile Hero -->
+    <div class="profile-hero">
+      <div class="avatar-container">
+        <img src="assets/headshot.jpg?v=3" alt="Allen Mask" class="avatar-img" />
+      </div>
+
+      <div class="name-title-row">
+        <h1>Allen Mask</h1>
+        <span class="verified-check" title="Verified">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+        </span>
+      </div>
+
+      <div class="bio-tagline">
+        <div class="tagline-primary">Current Investor, former Operator.</div>
+        <div class="tagline-secondary">Entrepreneur. Consultant. Coach.</div>
+      </div>
+    </div>
+
+    <!-- Primary 3 Links Stack -->
+    <div class="links-stack">
+
+      <!-- 1. Resume -> LinkedIn -->
+      <a href="https://www.linkedin.com/in/allenmask/" target="_blank" rel="noopener noreferrer" class="link-card external-link">
+        <div class="link-left">
+          <div class="link-icon-box">
+            <!-- LinkedIn Logo -->
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9v8.37H9.2V10.9H6.46M7.83 6.2a1.65 1.65 0 0 0-1.66 1.66 1.66 1.66 0 0 0 1.66 1.66 1.65 1.65 0 0 0 1.65-1.66A1.65 1.65 0 0 0 7.83 6.2Z"/></svg>
+          </div>
+          <div class="link-info">
+            <div class="link-title">Resume</div>
+            <div class="link-sub">Professional Work</div>
+          </div>
+        </div>
+        <div class="link-arrow">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+        </div>
+      </a>
+
+      <!-- 2. Portfolio -> Medium -->
+      <a href="https://medium.com/@allenmask" target="_blank" rel="noopener noreferrer" class="link-card external-link">
+        <div class="link-left">
+          <div class="link-icon-box">
+            <!-- Medium Logo -->
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M13.54 12a6.8 6.8 0 0 1-6.77 6.82A6.8 6.8 0 0 1 0 12a6.8 6.8 0 0 1 6.77-6.82A6.8 6.8 0 0 1 13.54 12zM20.96 12c0 3.54-1.51 6.42-3.38 6.42-1.87 0-3.39-2.88-3.39-6.42s1.52-6.42 3.39-6.42 3.38 2.88 3.38 6.42M24 12c0 3.17-.53 5.75-1.19 5.75-.66 0-1.19-2.58-1.19-5.75s.53-5.75 1.19-5.75C23.47 6.25 24 8.83 24 12z"/></svg>
+          </div>
+          <div class="link-info">
+            <div class="link-title">Portfolio</div>
+            <div class="link-sub">Creative Works</div>
+          </div>
+        </div>
+        <div class="link-arrow">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+        </div>
+      </a>
+
+      <!-- 3. Latest Project (Pour House Book) -->
+      <a href="https://www.barnesandnoble.com/w/pour-house-allen-greene-mask/1148912154?ean=9798993091709" target="_blank" rel="noopener noreferrer" class="link-card spotlight-card external-link">
+        <div class="link-left">
+          <div class="link-icon-box book-icon-box">
+            <!-- Miniature Pour House Book Jacket -->
+            <img src="assets/pour-house-cover.png" alt="Pour House Book" class="book-cover-thumb" />
+          </div>
+          <div class="link-info">
+            <div style="display: flex; align-items: center;">
+              <span class="link-title">Latest Project</span>
+              <span class="spotlight-badge">New</span>
+            </div>
+            <div class="link-sub">Pour House</div>
+          </div>
+        </div>
+        <div class="link-arrow">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+        </div>
+      </a>
+
+    </div>
+
+    <!-- Minimal Contact Icon Button above Footer -->
+    <div class="contact-bar">
+      <a href="mailto:mail@allenmask.com" onclick="handleEmailClick(event)" class="contact-icon-btn" title="mail@allenmask.com (click to email or copy)" aria-label="Email">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+      </a>
+    </div>
+
+    <!-- Footer -->
+    <div class="bio-footer">
+      <a href="https://allenmask.com" class="bio-badge">
+        <span>&copy; 2026 Allen Mask &middot; allenmask.com</span>
+      </a>
+    </div>
+
+  </div>
+
+  <div id="toast">mail@allenmask.com copied to clipboard!</div>
+
+  <script>
+    // Theme Toggle
+    const toggleBtn = document.getElementById('themeToggle');
+    const moonIcon = document.getElementById('moonIcon');
+    const sunIcon = document.getElementById('sunIcon');
+
+    const savedTheme = localStorage.getItem('theme') || 'dark';
+    setTheme(savedTheme);
+
+    toggleBtn.addEventListener('click', () => {
+      const current = document.documentElement.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
+      setTheme(current === 'dark' ? 'light' : 'dark');
+    });
+
+    function setTheme(theme) {
+      if (theme === 'light') {
+        document.documentElement.setAttribute('data-theme', 'light');
+        moonIcon.style.display = 'block';
+        sunIcon.style.display = 'none';
+      } else {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        moonIcon.style.display = 'none';
+        sunIcon.style.display = 'block';
+      }
+      localStorage.setItem('theme', theme);
+    }
+
+    // Email Click & Copy Toast
+    function handleEmailClick(e) {
+      const email = 'mail@allenmask.com';
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(email).then(() => {
+          showToast('mail@allenmask.com copied to clipboard!');
+        }).catch(() => {});
+      }
+    }
+
+    // On mobile devices, default to opening directly in the same tab / launching native app
+    const isMobileDevice = /Android|iPhone|iPad|iPod|webOS|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) 
+      || (window.matchMedia && window.matchMedia('(max-width: 768px)').matches);
+
+    if (isMobileDevice) {
+      document.querySelectorAll('a.external-link').forEach(link => {
+        link.removeAttribute('target');
+      });
+    }
+
+    // Share Profile
+    document.getElementById('shareBtn').addEventListener('click', async () => {
+      if (navigator.share) {
+        try {
+          await navigator.share({
+            title: 'Allen Mask',
+            text: 'Current Investor, former Operator. Entrepreneur. Consultant. Coach.',
+            url: window.location.href,
+          });
+        } catch (err) {}
+      } else {
+        navigator.clipboard.writeText(window.location.href);
+        showToast('Link copied to clipboard!');
+      }
+    });
+
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      toast.textContent = msg;
+      toast.classList.add('active');
+      setTimeout(() => {
+        toast.classList.remove('active');
+      }, 2500);
+    }
+  </script>
+</body>
+</html>
