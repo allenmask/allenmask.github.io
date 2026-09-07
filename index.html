@@ -37,15 +37,15 @@
       --radius: 20px;
       --radius-sm: 14px;
       --radius-pill: 9999px;
-      --spotlight-bg: #ffffff;
-      --spotlight-border: #ffffff;
+      --spotlight-bg: #babfc5;
+      --spotlight-border: rgba(255, 255, 255, 0.18);
       --spotlight-text: #090a0f;
-      --spotlight-sub: #475569;
-      --spotlight-icon-bg: rgba(0, 0, 0, 0.06);
-      --spotlight-icon-border: rgba(0, 0, 0, 0.1);
+      --spotlight-sub: #334155;
+      --spotlight-icon-bg: rgba(0, 0, 0, 0.08);
+      --spotlight-icon-border: rgba(0, 0, 0, 0.12);
       --spotlight-arrow: #090a0f;
-      --spotlight-shadow: 0 14px 34px rgba(255, 255, 255, 0.14), 0 4px 14px rgba(0, 0, 0, 0.5);
-      --spotlight-hover-shadow: 0 20px 44px rgba(255, 255, 255, 0.24), 0 6px 18px rgba(0, 0, 0, 0.6);
+      --spotlight-shadow: 0 14px 34px rgba(0, 0, 0, 0.3), 0 4px 14px rgba(0, 0, 0, 0.4);
+      --spotlight-hover-shadow: 0 20px 44px rgba(0, 0, 0, 0.4), 0 6px 18px rgba(0, 0, 0, 0.5);
       --spotlight-tag-bg: #090a0f;
       --spotlight-tag-text: #ffffff;
     }
@@ -68,17 +68,17 @@
       --icon-bg: #f8fafc;
       --icon-hover: #f1f5f9;
       --shadow-card: 0 6px 24px rgba(0, 0, 0, 0.06);
-      --spotlight-bg: #0c0d12;
-      --spotlight-border: #0c0d12;
-      --spotlight-text: #ffffff;
-      --spotlight-sub: #94a3b8;
-      --spotlight-icon-bg: rgba(255, 255, 255, 0.12);
-      --spotlight-icon-border: rgba(255, 255, 255, 0.18);
-      --spotlight-arrow: #ffffff;
-      --spotlight-shadow: 0 14px 34px rgba(12, 13, 18, 0.22), 0 4px 12px rgba(0, 0, 0, 0.08);
-      --spotlight-hover-shadow: 0 20px 44px rgba(12, 13, 18, 0.32), 0 6px 16px rgba(0, 0, 0, 0.12);
-      --spotlight-tag-bg: #ffffff;
-      --spotlight-tag-text: #0c0d12;
+      --spotlight-bg: #babfc5;
+      --spotlight-border: rgba(0, 0, 0, 0.08);
+      --spotlight-text: #090a0f;
+      --spotlight-sub: #334155;
+      --spotlight-icon-bg: rgba(0, 0, 0, 0.08);
+      --spotlight-icon-border: rgba(0, 0, 0, 0.12);
+      --spotlight-arrow: #090a0f;
+      --spotlight-shadow: 0 10px 30px rgba(0, 0, 0, 0.08), 0 4px 12px rgba(0, 0, 0, 0.05);
+      --spotlight-hover-shadow: 0 16px 36px rgba(0, 0, 0, 0.14), 0 6px 16px rgba(0, 0, 0, 0.08);
+      --spotlight-tag-bg: #090a0f;
+      --spotlight-tag-text: #ffffff;
     }
 
     * {
@@ -590,7 +590,7 @@
           </div>
         </div>
         <div class="link-arrow">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
         </div>
       </a>
 
@@ -607,7 +607,7 @@
           </div>
         </div>
         <div class="link-arrow">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
         </div>
       </a>
 
@@ -643,7 +643,7 @@
     <!-- Footer -->
     <div class="bio-footer">
       <a href="https://allenmask.com" class="bio-badge">
-        <span>&copy; 2026 Allen Mask &middot; allenmask.com</span>
+        <span>&copy; 2026 Allen Mask</span>
       </a>
     </div>
 
@@ -678,14 +678,15 @@
       localStorage.setItem('theme', theme);
     }
 
-    // Email Click & Copy Toast
+    // Email Click: Launch Compose & Copy to Clipboard
     function handleEmailClick(e) {
       const email = 'mail@allenmask.com';
       if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(email).then(() => {
-          showToast('mail@allenmask.com copied to clipboard!');
-        }).catch(() => {});
+        navigator.clipboard.writeText(email).catch(() => {});
       }
+      showToast('Opening compose: mail@allenmask.com');
+      // Trigger the mail compose protocol explicitly
+      window.location.href = 'mailto:' + email;
     }
 
     // On mobile devices, default to opening directly in the same tab / launching native app
