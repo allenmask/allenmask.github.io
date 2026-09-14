@@ -2,14 +2,58 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>Allen Mask</title>
-  <meta name="description" content="Allen Mask — Current Investor, former Operator. Entrepreneur. Consultant. Coach." />
-  <meta property="og:title" content="Allen Mask" />
-  <meta property="og:description" content="Current Investor, former Operator. Entrepreneur. Consultant. Coach." />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Allen Mask — Investor and Partner at WestCap. Sonos, Airbnb, Google &amp; Goldman Sachs alum.</title>
+  <meta name="description" content="Allen Mask is an investor and Partner at WestCap, and an alum of Sonos, Airbnb, Google, and Goldman Sachs. Always creating, consulting, and coaching." />
+  <link rel="canonical" href="https://allenmask.com/" />
+
+  <!-- Security & Referrer Hardening -->
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; script-src 'self' 'unsafe-inline'; object-src 'none'; upgrade-insecure-requests" />
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="profile" />
+  <meta property="og:title" content="Allen Mask — Investor and Partner at WestCap. Sonos, Airbnb, Google &amp; Goldman Sachs alum." />
+  <meta property="og:description" content="Allen Mask is an investor and Partner at WestCap, and an alum of Sonos, Airbnb, Google, and Goldman Sachs. Always creating, consulting, and coaching." />
   <meta property="og:url" content="https://allenmask.com" />
-  <meta property="og:image" content="https://allenmask.com/assets/headshot.jpg?v=3" />
-  <meta name="twitter:card" content="summary" />
+  <meta property="og:image" content="https://allenmask.com/assets/headshot.jpg" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Allen Mask — Investor and Partner at WestCap. Sonos, Airbnb, Google &amp; Goldman Sachs alum." />
+  <meta name="twitter:description" content="Allen Mask is an investor and Partner at WestCap, and an alum of Sonos, Airbnb, Google, and Goldman Sachs. Always creating, consulting, and coaching." />
+  <meta name="twitter:image" content="https://allenmask.com/assets/headshot.jpg" />
+
+  <!-- Structured Data: Person Schema (JSON-LD) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Allen Mask",
+    "url": "https://allenmask.com",
+    "image": "https://allenmask.com/assets/headshot.jpg",
+    "jobTitle": ["Investor and Partner, WestCap", "Managing Partner, CoLab"],
+    "worksFor": [
+      { "@type": "Organization", "name": "WestCap", "url": "https://www.westcap.com" },
+      { "@type": "Organization", "name": "CoLab", "description": "The creative studio within WestCap" }
+    ],
+    "homeLocation": { "@type": "Place", "name": "Raleigh, North Carolina, United States" },
+    "alumniOf": [
+      { "@type": "Organization", "name": "Airbnb" },
+      { "@type": "Organization", "name": "Sonos" },
+      { "@type": "Organization", "name": "Google" },
+      { "@type": "Organization", "name": "Goldman Sachs" },
+      { "@type": "CollegeOrUniversity", "name": "University of North Carolina at Chapel Hill" }
+    ],
+    "award": "Forbes 30 Under 30 (Marketing & Advertising)",
+    "description": "Allen Mask is a Partner at WestCap and Managing Partner of CoLab, WestCap's creative studio, based in Raleigh, North Carolina. He focuses on 'operating equity' — pairing capital with brand, creative, and operating support to drive growth. Previously he held marketing and leadership roles at Airbnb (General Manager, Magical Trips and first Product Marketing hire), Sonos (VP of Marketing and Chief of Staff, through IPO), and Google, and began his career in investment banking at Goldman Sachs. Forbes 30 Under 30 in Marketing & Advertising. He is also an author and musician.",
+    "sameAs": [
+      "https://www.linkedin.com/in/allenmask/",
+      "https://medium.com/@allenmask"
+    ],
+    "knowsAbout": ["growth equity", "operating equity", "brand marketing", "product marketing", "go-to-market strategy", "new product introduction", "venture capital", "org design", "executive coaching"]
+  }
+  </script>
   
   <!-- Favicon / Brand Icon -->
   <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png" />
@@ -17,6 +61,7 @@
   <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png" />
   <link rel="shortcut icon" href="favicon.ico" />
   
+  <!-- Font Performance -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -550,7 +595,7 @@
     <!-- Top Actions Bar -->
     <div class="top-bar">
       <div class="brand-avatar" title="Allen Mask">
-        <img src="assets/logo-mark.png" alt="AM" class="brand-avatar-img" />
+        <img src="assets/logo-mark.png" alt="Allen Mask monogram logo" class="brand-avatar-img" width="19" height="19" />
       </div>
       <div class="top-actions">
         <button class="btn-icon" id="shareBtn" title="Share Profile" aria-label="Share">
@@ -566,7 +611,7 @@
     <!-- Main Profile Hero -->
     <div class="profile-hero">
       <div class="avatar-container">
-        <img src="assets/headshot.jpg?v=3" alt="Allen Mask" class="avatar-img" />
+        <img src="assets/headshot.jpg?v=3" alt="Allen Mask headshot" class="avatar-img" width="114" height="114" />
       </div>
 
       <div class="name-title-row">
@@ -577,8 +622,8 @@
       </div>
 
       <div class="bio-tagline">
-        <div class="tagline-primary">Current Investor, former Operator.</div>
-        <div class="tagline-secondary">Entrepreneur. Consultant. Coach.</div>
+        <div class="tagline-primary">Investor at WestCap. @sonos @airbnb @google @goldmansachs alum.</div>
+        <div class="tagline-secondary">always creating. always consulting. always coaching.</div>
       </div>
     </div>
 
@@ -624,7 +669,7 @@
         <div class="link-left">
           <div class="link-icon-box book-icon-box">
             <!-- Miniature Pour House Book Jacket -->
-            <img src="assets/pour-house-cover.png" alt="Pour House Book" class="book-cover-thumb" />
+            <img src="assets/pour-house-cover.png" alt="Pour House book cover by Allen Greene Mask" class="book-cover-thumb" width="20" height="30" />
           </div>
           <div class="link-info">
             <div style="display: flex; align-items: center;">
@@ -719,7 +764,7 @@
         try {
           await navigator.share({
             title: 'Allen Mask',
-            text: 'Current Investor, former Operator. Entrepreneur. Consultant. Coach.',
+            text: 'Investor at WestCap. @sonos @airbnb @google @goldmansachs alum.',
             url: window.location.href,
           });
         } catch (err) {}
