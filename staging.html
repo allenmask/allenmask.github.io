@@ -275,9 +275,46 @@
       letter-spacing: 0.02em;
     }
 
+    .tagline-tickers {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      margin-top: 3px;
+      flex-wrap: wrap;
+    }
+
+    .ticker-pill {
+      display: inline-flex;
+      align-items: center;
+      padding: 2px 7px;
+      font-size: 0.72rem;
+      font-weight: 600;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      letter-spacing: 0.04em;
+      color: var(--text-dim);
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius-pill);
+      transition: color 0.15s ease, border-color 0.15s ease, background-color 0.15s ease;
+      cursor: default;
+      user-select: none;
+    }
+
+    .ticker-pill:hover {
+      color: var(--text);
+      border-color: rgba(255, 255, 255, 0.25);
+      background: var(--card-hover);
+    }
+
+    [data-theme="light"] .ticker-pill:hover {
+      border-color: rgba(0, 0, 0, 0.25);
+    }
+
     @media (max-width: 380px) {
       .tagline-primary { font-size: 0.9rem; }
       .tagline-secondary { font-size: 0.82rem; }
+      .ticker-pill { font-size: 0.68rem; padding: 2px 6px; }
     }
 
     .bio-summary strong {
@@ -623,8 +660,13 @@
 
       <div class="bio-tagline">
         <div class="tagline-primary">Growth Investor. Tech Alum.</div>
-        <div class="tagline-secondary">Freelance creative, consultant, and coach.</div>
-        <div class="tagline-handles" style="font-size: 0.80rem; color: var(--text-dim); letter-spacing: 0.02em; margin-top: 2px;">@westcap &middot; @sonos &middot; @airbnb &middot; @google &middot; @goldmansachs</div>
+        <div class="tagline-secondary">Creator. Consultant. Coach.</div>
+        <div class="tagline-tickers" aria-label="Alum of Sonos, Airbnb, Google, Goldman Sachs">
+          <span class="ticker-pill" title="Sonos">$SONO</span>
+          <span class="ticker-pill" title="Airbnb">$ABNB</span>
+          <span class="ticker-pill" title="Google">$GOOGL</span>
+          <span class="ticker-pill" title="Goldman Sachs">$GS</span>
+        </div>
       </div>
     </div>
 
