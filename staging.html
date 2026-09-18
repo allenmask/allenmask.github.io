@@ -280,13 +280,14 @@
       align-items: center;
       justify-content: center;
       gap: 6px;
-      margin-top: 3px;
+      margin-top: 4px;
       flex-wrap: wrap;
     }
 
     .ticker-pill {
       display: inline-flex;
       align-items: center;
+      gap: 4px;
       padding: 2px 7px;
       font-size: 0.72rem;
       font-weight: 600;
@@ -296,25 +297,45 @@
       background: var(--card-bg);
       border: 1px solid var(--card-border);
       border-radius: var(--radius-pill);
-      transition: color 0.15s ease, border-color 0.15s ease, background-color 0.15s ease;
+      transition: color 0.15s ease, border-color 0.15s ease, background-color 0.15s ease, transform 0.15s ease;
       cursor: default;
       user-select: none;
+    }
+
+    .ticker-icon {
+      width: 10px;
+      height: 10px;
+      flex-shrink: 0;
+      color: var(--text-dim);
+      opacity: 0.75;
+      transition: color 0.15s ease, opacity 0.15s ease;
     }
 
     .ticker-pill:hover {
       color: var(--text);
       border-color: rgba(255, 255, 255, 0.25);
       background: var(--card-hover);
+      transform: translateY(-1px);
+    }
+
+    .ticker-pill:hover .ticker-icon {
+      color: var(--accent);
+      opacity: 1;
     }
 
     [data-theme="light"] .ticker-pill:hover {
       border-color: rgba(0, 0, 0, 0.25);
     }
 
+    [data-theme="light"] .ticker-pill:hover .ticker-icon {
+      color: var(--accent);
+    }
+
     @media (max-width: 380px) {
       .tagline-primary { font-size: 0.9rem; }
       .tagline-secondary { font-size: 0.82rem; }
-      .ticker-pill { font-size: 0.68rem; padding: 2px 6px; }
+      .ticker-pill { font-size: 0.68rem; padding: 2px 6px; gap: 3px; }
+      .ticker-icon { width: 9px; height: 9px; }
     }
 
     .bio-summary strong {
@@ -662,10 +683,22 @@
         <div class="tagline-primary">Growth Investor. Tech Alum.</div>
         <div class="tagline-secondary">Creator. Consultant. Coach.</div>
         <div class="tagline-tickers" aria-label="Alum of Sonos, Airbnb, Google, Goldman Sachs">
-          <span class="ticker-pill" title="Sonos">$SONO</span>
-          <span class="ticker-pill" title="Airbnb">$ABNB</span>
-          <span class="ticker-pill" title="Google">$GOOGL</span>
-          <span class="ticker-pill" title="Goldman Sachs">$GS</span>
+          <span class="ticker-pill" title="Sonos · NASDAQ: SONO">
+            <svg class="ticker-icon" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline><polyline points="16 7 22 7 22 13"></polyline></svg>
+            <span>SONO</span>
+          </span>
+          <span class="ticker-pill" title="Airbnb · NASDAQ: ABNB">
+            <svg class="ticker-icon" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline><polyline points="16 7 22 7 22 13"></polyline></svg>
+            <span>ABNB</span>
+          </span>
+          <span class="ticker-pill" title="Google · NASDAQ: GOOGL">
+            <svg class="ticker-icon" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline><polyline points="16 7 22 7 22 13"></polyline></svg>
+            <span>GOOGL</span>
+          </span>
+          <span class="ticker-pill" title="Goldman Sachs · NYSE: GS">
+            <svg class="ticker-icon" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline><polyline points="16 7 22 7 22 13"></polyline></svg>
+            <span>GS</span>
+          </span>
         </div>
       </div>
     </div>
