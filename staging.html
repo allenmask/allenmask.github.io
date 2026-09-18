@@ -302,31 +302,90 @@
       user-select: none;
     }
 
+    /* Live Market Pulse Dot */
     .ticker-dot {
       width: 5px;
       height: 5px;
       border-radius: 50%;
-      background-color: #10b981;
-      box-shadow: 0 0 5px rgba(16, 185, 129, 0.5);
       flex-shrink: 0;
-      transition: background-color 0.15s ease, box-shadow 0.15s ease;
-      animation: marketPulse 2.4s ease-in-out infinite;
+      transition: background-color 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
     }
 
-    .tagline-tickers .ticker-pill:nth-child(1) .ticker-dot { animation-delay: 0s; }
-    .tagline-tickers .ticker-pill:nth-child(2) .ticker-dot { animation-delay: 0.6s; }
-    .tagline-tickers .ticker-pill:nth-child(3) .ticker-dot { animation-delay: 1.2s; }
-    .tagline-tickers .ticker-pill:nth-child(4) .ticker-dot { animation-delay: 1.8s; }
+    /* Neutral State: After-Hours / Weekends / Fallback */
+    .ticker-dot,
+    .ticker-dot.status-neutral {
+      background-color: var(--text-dim);
+      box-shadow: 0 0 3px rgba(148, 163, 184, 0.35);
+      opacity: 0.65;
+    }
 
-    @keyframes marketPulse {
+    .ticker-pill:hover .ticker-dot.status-neutral,
+    .ticker-pill:hover .ticker-dot:not(.status-up):not(.status-down) {
+      background-color: #94a3b8;
+      box-shadow: 0 0 6px rgba(148, 163, 184, 0.6);
+      opacity: 1;
+    }
+
+    /* Up / Positive State (During Market Hours) */
+    .ticker-dot.status-up {
+      background-color: #10b981;
+      box-shadow: 0 0 5px rgba(16, 185, 129, 0.55);
+      opacity: 0.85;
+      animation: marketPulseGreen 2.4s ease-in-out infinite;
+    }
+
+    .tagline-tickers .ticker-pill:nth-child(1) .ticker-dot.status-up { animation-delay: 0s; }
+    .tagline-tickers .ticker-pill:nth-child(2) .ticker-dot.status-up { animation-delay: 0.6s; }
+    .tagline-tickers .ticker-pill:nth-child(3) .ticker-dot.status-up { animation-delay: 1.2s; }
+    .tagline-tickers .ticker-pill:nth-child(4) .ticker-dot.status-up { animation-delay: 1.8s; }
+
+    @keyframes marketPulseGreen {
       0%, 100% {
         opacity: 0.7;
         box-shadow: 0 0 3px rgba(16, 185, 129, 0.35);
       }
       50% {
         opacity: 1;
-        box-shadow: 0 0 7px rgba(16, 185, 129, 0.85);
+        box-shadow: 0 0 8px rgba(16, 185, 129, 0.9);
       }
+    }
+
+    .ticker-pill:hover .ticker-dot.status-up {
+      background-color: #34d399;
+      box-shadow: 0 0 10px rgba(52, 211, 153, 1);
+      animation: none;
+      opacity: 1;
+    }
+
+    /* Down / Negative State (During Market Hours) */
+    .ticker-dot.status-down {
+      background-color: #ef4444;
+      box-shadow: 0 0 5px rgba(239, 68, 68, 0.55);
+      opacity: 0.85;
+      animation: marketPulseRed 2.4s ease-in-out infinite;
+    }
+
+    .tagline-tickers .ticker-pill:nth-child(1) .ticker-dot.status-down { animation-delay: 0s; }
+    .tagline-tickers .ticker-pill:nth-child(2) .ticker-dot.status-down { animation-delay: 0.6s; }
+    .tagline-tickers .ticker-pill:nth-child(3) .ticker-dot.status-down { animation-delay: 1.2s; }
+    .tagline-tickers .ticker-pill:nth-child(4) .ticker-dot.status-down { animation-delay: 1.8s; }
+
+    @keyframes marketPulseRed {
+      0%, 100% {
+        opacity: 0.7;
+        box-shadow: 0 0 3px rgba(239, 68, 68, 0.35);
+      }
+      50% {
+        opacity: 1;
+        box-shadow: 0 0 8px rgba(239, 68, 68, 0.9);
+      }
+    }
+
+    .ticker-pill:hover .ticker-dot.status-down {
+      background-color: #f87171;
+      box-shadow: 0 0 10px rgba(248, 113, 113, 1);
+      animation: none;
+      opacity: 1;
     }
 
     .ticker-pill:hover {
@@ -336,39 +395,34 @@
       transform: translateY(-1px);
     }
 
-    .ticker-pill:hover .ticker-dot {
-      background-color: #34d399;
-      box-shadow: 0 0 9px rgba(52, 211, 153, 0.95);
-      animation: none;
-      opacity: 1;
+    /* Light Mode */
+    [data-theme="light"] .ticker-dot.status-neutral {
+      background-color: #94a3b8;
+      box-shadow: 0 0 3px rgba(148, 163, 184, 0.35);
     }
 
-    [data-theme="light"] .ticker-dot {
+    [data-theme="light"] .ticker-dot.status-up {
       background-color: #059669;
-      box-shadow: 0 0 4px rgba(5, 150, 105, 0.35);
-      animation: marketPulseLight 2.4s ease-in-out infinite;
+      box-shadow: 0 0 4px rgba(5, 150, 105, 0.4);
     }
 
-    @keyframes marketPulseLight {
-      0%, 100% {
-        opacity: 0.75;
-        box-shadow: 0 0 3px rgba(5, 150, 105, 0.3);
-      }
-      50% {
-        opacity: 1;
-        box-shadow: 0 0 6px rgba(5, 150, 105, 0.75);
-      }
+    [data-theme="light"] .ticker-pill:hover .ticker-dot.status-up {
+      background-color: #10b981;
+      box-shadow: 0 0 8px rgba(16, 185, 129, 0.8);
+    }
+
+    [data-theme="light"] .ticker-dot.status-down {
+      background-color: #dc2626;
+      box-shadow: 0 0 4px rgba(220, 38, 38, 0.4);
+    }
+
+    [data-theme="light"] .ticker-pill:hover .ticker-dot.status-down {
+      background-color: #ef4444;
+      box-shadow: 0 0 8px rgba(239, 68, 68, 0.8);
     }
 
     [data-theme="light"] .ticker-pill:hover {
       border-color: rgba(0, 0, 0, 0.25);
-    }
-
-    [data-theme="light"] .ticker-pill:hover .ticker-dot {
-      background-color: #10b981;
-      box-shadow: 0 0 8px rgba(16, 185, 129, 0.85);
-      animation: none;
-      opacity: 1;
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -729,20 +783,20 @@
         <div class="tagline-primary">Growth Investor. Tech Alum.</div>
         <div class="tagline-secondary">Creator. Consultant. Coach.</div>
         <div class="tagline-tickers" aria-label="Alum of Sonos, Airbnb, Google, Goldman Sachs">
-          <span class="ticker-pill" title="Sonos · NASDAQ: SONO">
-            <span class="ticker-dot" aria-hidden="true"></span>
+          <span class="ticker-pill" data-ticker="SONO" title="Sonos · NASDAQ: SONO">
+            <span class="ticker-dot status-neutral" aria-hidden="true"></span>
             <span>SONO</span>
           </span>
-          <span class="ticker-pill" title="Airbnb · NASDAQ: ABNB">
-            <span class="ticker-dot" aria-hidden="true"></span>
+          <span class="ticker-pill" data-ticker="ABNB" title="Airbnb · NASDAQ: ABNB">
+            <span class="ticker-dot status-neutral" aria-hidden="true"></span>
             <span>ABNB</span>
           </span>
-          <span class="ticker-pill" title="Google · NASDAQ: GOOGL">
-            <span class="ticker-dot" aria-hidden="true"></span>
+          <span class="ticker-pill" data-ticker="GOOGL" title="Google · NASDAQ: GOOGL">
+            <span class="ticker-dot status-neutral" aria-hidden="true"></span>
             <span>GOOGL</span>
           </span>
-          <span class="ticker-pill" title="Goldman Sachs · NYSE: GS">
-            <span class="ticker-dot" aria-hidden="true"></span>
+          <span class="ticker-pill" data-ticker="GS" title="Goldman Sachs · NYSE: GS">
+            <span class="ticker-dot status-neutral" aria-hidden="true"></span>
             <span>GS</span>
           </span>
         </div>
@@ -904,6 +958,80 @@
         toast.classList.remove('active');
       }, 2500);
     }
+
+    // Live Market Hours & Ticker Status Integration
+    (function initMarketTickers() {
+      const tickers = {
+        SONO: { name: 'Sonos', exchange: 'NASDAQ' },
+        ABNB: { name: 'Airbnb', exchange: 'NASDAQ' },
+        GOOGL: { name: 'Google', exchange: 'NASDAQ' },
+        GS: { name: 'Goldman Sachs', exchange: 'NYSE' }
+      };
+
+      function isUSMarketOpen() {
+        try {
+          const params = new URLSearchParams(window.location.search);
+          if (params.get('market') === 'open') return true;
+          if (params.get('market') === 'closed') return false;
+
+          const etFormatter = new Intl.DateTimeFormat('en-US', {
+            timeZone: 'America/New_York',
+            hour12: false,
+            weekday: 'short',
+            hour: 'numeric',
+            minute: 'numeric'
+          });
+          const parts = etFormatter.formatToParts(new Date());
+          const partMap = {};
+          parts.forEach(p => partMap[p.type] = p.value);
+          const weekday = partMap.weekday;
+          const hour = parseInt(partMap.hour, 10);
+          const min = parseInt(partMap.minute, 10);
+          const isWeekday = !['Sat', 'Sun'].includes(weekday);
+          const totalMinutes = hour * 60 + min;
+          // Regular US Market Hours: 9:30 AM (570m) to 4:00 PM (960m) ET
+          return isWeekday && totalMinutes >= 570 && totalMinutes < 960;
+        } catch (e) {
+          return false;
+        }
+      }
+
+      fetch('market-data.json?v=' + Math.floor(Date.now() / 60000))
+        .then(r => r.ok ? r.json() : null)
+        .then(data => {
+          if (!data) return;
+          const marketOpen = isUSMarketOpen();
+
+          Object.keys(tickers).forEach(sym => {
+            const pill = document.querySelector(`[data-ticker="${sym}"]`);
+            if (!pill) return;
+            const dot = pill.querySelector('.ticker-dot');
+            const quote = data[sym];
+            if (!quote || !dot) return;
+
+            const baseName = `${tickers[sym].name} · ${tickers[sym].exchange}: ${sym}`;
+
+            if (marketOpen) {
+              const isUp = quote.direction === 'up' || (parseFloat(quote.netChange) > 0);
+              const isDown = quote.direction === 'down' || (parseFloat(quote.netChange) < 0);
+              if (isUp) {
+                dot.className = 'ticker-dot status-up';
+                pill.title = `${baseName} · ${quote.price} (${quote.percentageChange})`;
+              } else if (isDown) {
+                dot.className = 'ticker-dot status-down';
+                pill.title = `${baseName} · ${quote.price} (${quote.percentageChange})`;
+              } else {
+                dot.className = 'ticker-dot status-neutral';
+                pill.title = `${baseName} · ${quote.price} (0.00%)`;
+              }
+            } else {
+              dot.className = 'ticker-dot status-neutral';
+              pill.title = `${baseName} · Market Closed · Last: ${quote.price} (${quote.percentageChange})`;
+            }
+          });
+        })
+        .catch(() => {});
+    })();
   </script>
 </body>
 </html>

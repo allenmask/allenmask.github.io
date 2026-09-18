@@ -1,0 +1,30 @@
+{
+  "SONO": {
+    "price": "$16.07",
+    "netChange": "+0.47",
+    "percentageChange": "+3.01%",
+    "direction": "up",
+    "timestamp": "Sep 17, 2026"
+  },
+  "ABNB": {
+    "price": "$165.93",
+    "netChange": "-1.58",
+    "percentageChange": "-0.94%",
+    "direction": "down",
+    "timestamp": "Sep 17, 2026"
+  },
+  "GOOGL": {
+    "price": "$347.33",
+    "netChange": "+4.46",
+    "percentageChange": "+1.30%",
+    "direction": "up",
+    "timestamp": "Sep 17, 2026"
+  },
+  "GS": {
+    "price": "$951.47",
+    "netChange": "+13.49",
+    "percentageChange": "+1.44%",
+    "direction": "up",
+    "timestamp": "Sep 17, 2026"
+  }
+}
